@@ -36,3 +36,15 @@ Accept: text/plain
 Cache-Control: no-cache
 
 ###
+
+PUT http://localhost:8088/fibonacci/
+Accept: text/plain
+Cache-Control: no-cache
+
+###
+
+DELETE http://localhost:8088/fibonacci/
+Accept: text/plain
+Cache-Control: no-cache
+
+###

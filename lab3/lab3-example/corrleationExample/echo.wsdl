@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="echo"
+	targetNamespace="http://sample.org/wsdl/echo/echo.wsdl"
+	xmlns:tns="http://sample.org/wsdl/echo/echo.wsdl"
+	xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+	xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:ns2="http://sample.org/wsdl/echo_service/echo_service.wsdl"
+	xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+	<import
+		namespace="http://sample.org/wsdl/echo_service/echo_service.wsdl"
+		location="echo_service.wsdl" />
+
+	<types>
+		<schema attributeFormDefault="qualified" elementFormDefault="qualified"
+			targetNamespace="http://sample.org/wsdl/echo/echo.wsdl"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+
+			<element name="testRequest">
+				<complexType>
+					<sequence>
+						<element name="input" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+
+			<element name="testResponse">
+				<complexType>
+					<sequence>
+						<element name="result" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+
+		</schema>
+	</types>
+
+	<message name="testResponseMessage">
+		<part name="payload" element="tns:testResponse" />
+	</message>
+
+	<message name="testRequestMessage">
+		<part name="payload" element="tns:testRequest" />
+	</message>
+
+	<portType name="testCallbackPT">
+		<operation name="onResult">
+			<input message="tns:testResponseMessage" />
+		</operation>
+	</portType>
+
+	<portType name="EchoCallerPT">
+		<operation name="echo">
+			<input message="tns:testRequestMessage" />
+			<output message="tns:testResponseMessage" />
+		</operation>
+	</portType>
+
+	<service name="EchoCaller">
+	</service>
+
+	<service name="EchoCallback">
+	</service>
+
+</definitions>

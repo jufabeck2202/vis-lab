@@ -1,0 +1,18 @@
+
+curl -H "Accept: application/json" http://my-client-with-secret:secret@localhost:8080/oauth/token -d grant_type=client_credentials
+
+###
+
+curl -H "Authorization: Bearer b11ab62b-f420-4cd7-a1d0-167747c82e90" http://localhost:8080/hello
+
+###
+
+POST http://my-client-with-secret:secret@localhost:8080/oauth/token?grant_type=client_credentials HTTP/1.1
+Accept: application/json
+
+grant_type=client_credentials
+
+###
+
+GET http://localhost:8080/hello HTTP/1.1
+Authorization: Bearer b11ab62b-f420-4cd7-a1d0-167747c82e90

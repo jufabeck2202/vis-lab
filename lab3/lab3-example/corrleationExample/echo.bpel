@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+	xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+	xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+	xmlns:ns1="http://sample.org/wsdl/echo/echo.wsdl"
+	xmlns:ns2="http://sample.org/wsdl/echo_service/echo_service.wsdl"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="echo"
+	suppressJoinFailure="yes" targetNamespace="http://sample.org/bpel/echo/echo.bpel"
+	xmlns:ns3="http://sample.org/bpel/echo/echo.bpelArtifacts">
+  
+	<bpel:import
+		namespace="http://sample.org/bpel/echo/echo.bpelArtifacts"
+		location="echoArtifacts.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"></bpel:import>
+		
+	<import importType="http://schemas.xmlsoap.org/wsdl/" location="echo.wsdl"
+		namespace="http://sample.org/wsdl/echo/echo.wsdl" />
+  
+	<import importType="http://schemas.xmlsoap.org/wsdl/" location="echo_service.wsdl"
+		namespace="http://sample.org/wsdl/echo_service/echo_service.wsdl" />
+
+	<partnerLinks>
+		<bpel:partnerLink name="testRequesterPL"
+			partnerLinkType="ns3:testRequesterPLT" myRole="testReplyReceiver"
+			partnerRole="testProvider"></bpel:partnerLink>
+		<partnerLink name="EchoCallerPL" partnerLinkType="ns3:EchoCallerPLT"
+			myRole="EchoCaller" />
+	</partnerLinks>
+
+	<variables>
+		<variable messageType="ns1:testRequestMessage" name="testRequestMessage" />
+		<variable messageType="ns1:testResponseMessage" name="testResponseMessage" />
+		<variable messageType="ns2:initiateEchoRequest" name="initateEchoRequest" />
+	</variables>
+
+	<correlationSets>
+		<bpel:correlationSet name="CS1"
+			properties="ns3:echoCorrelationData">
+		</bpel:correlationSet>
+	</correlationSets>
+
+	<sequence>
+
+		<receive createInstance="yes" operation="echo" partnerLink="EchoCallerPL"
+			portType="ns1:EchoCallerPT" variable="testRequestMessage" />
+
+		<assign>
+			<copy>
+				<from part="payload" variable="testRequestMessage">
+					<query>ns1:input</query>
+				</from>
+				<to part="echoString" variable="initateEchoRequest" />
+			</copy>
+		</assign>
+
+		<invoke inputVariable="initateEchoRequest" operation="initiateEcho"
+			partnerLink="testRequesterPL" portType="ns2:EchoServicePT">
+			<correlations>
+				<correlation initiate="yes" set="CS1" />
+			</correlations>
+		</invoke>
+
+		<receive operation="onResult" partnerLink="testRequesterPL"
+			portType="ns1:testCallbackPT" variable="testResponseMessage">
+			<correlations>
+				<correlation initiate="no" set="CS1" />
+			</correlations>
+		</receive>
+
+		<reply operation="echo" partnerLink="EchoCallerPL"
+			portType="ns1:EchoCallerPT" variable="testResponseMessage" />
+
+	</sequence>
+</process>

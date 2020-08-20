@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+	targetNamespace="http://sample.org/wsdl/echo_service/echo_service.wsdl"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap"
+	xmlns:impl="http://sample.org/wsdl/echo_service/echo_service.wsdl"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<wsdl:message name="initiateEchoRequest">
+		<wsdl:part name="echoString" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:portType name="EchoServicePT">
+		<wsdl:operation name="initiateEcho" parameterOrder="echoString">
+			<wsdl:input message="impl:initiateEchoRequest" name="initiateEchoRequest" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="EchoServiceSoapBinding" type="impl:EchoServicePT">
+		<wsdlsoap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="initiateEcho">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="initiateEchoRequest">
+				<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://sample.org/wsdl/echo_service/echo_service.wsdl"
+					use="literal" />
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="EchoServiceService">
+		<wsdl:port binding="impl:EchoServiceSoapBinding" name="EchoService">
+			<wsdlsoap:address location="http://localhost:8080/services/EchoService" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HelloOauthSrvApplication<hello-oauth-srv>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "de.hska.iwi.vislab.lab5.srv.HelloOauthSrvApplication",
+            "projectName": "hello-oauth-srv",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-HelloOauthWebApplication<hello-oauth-web>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "de.hska.iwi.vislab.lab5.web.HelloOauthWebApplication",
+            "projectName": "hello-oauth-web",
+            "args": ""
+        }
+    ]
+}

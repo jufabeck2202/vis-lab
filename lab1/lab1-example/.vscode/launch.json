@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TestWsClient<lab1-example>",
+            "request": "launch",
+            "mainClass": "de.hska.iwi.vislab.lab1.example.TestWsClient",
+            "projectName": "lab1-example"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-TestWsServer<lab1-example>",
+            "request": "launch",
+            "mainClass": "de.hska.iwi.vislab.lab1.example.TestWsServer",
+            "projectName": "lab1-example"
+        }
+    ]
+}

@@ -18,6 +18,9 @@ import tcc.hotel.HotelReservationDoc;
  * with some requests.
  */
 public class TestClient {
+
+
+
 	public static void main(String[] args) {
 		try {
 			Client client = ClientBuilder.newClient();
@@ -67,7 +70,8 @@ public class TestClient {
 			HotelReservationDoc outputHotel = responseHotel.readEntity(HotelReservationDoc.class);
 			System.out.println("Output from Server: " + outputHotel);
 
-			
+			//confirm Hotel
+
 
 		} catch (Exception e) {
 			e.printStackTrace();

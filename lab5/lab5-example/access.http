@@ -3,7 +3,7 @@ curl -H "Accept: application/json" http://my-client-with-secret:secret@localhost
 
 ###
 
-curl -H "Authorization: Bearer b11ab62b-f420-4cd7-a1d0-167747c82e90" http://localhost:8080/hello
+curl -H "Authorization: Bearer a058fbec-3b05-4156-a8b1-2c08fff78b36" http://localhost:8080/hello
 
 ###
 

@@ -23,12 +23,13 @@ public class HelloOauthSrvApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HelloOauthSrvApplication.class, args);
 	}
-
+	//service Darstellen
+	//einfacher statischer service
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String hello() {
 		return "Hello Oauth!";
 	}
-
+	//HTTP Basic AUTH -> Fenster mit NAME und PW
 	@Configuration
 	@EnableAuthorizationServer
 	protected static class OAuth2Config extends AuthorizationServerConfigurerAdapter {
@@ -49,6 +50,7 @@ public class HelloOauthSrvApplication {
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 			// @formatter:off
+			//DREI client, wir benutzen ersten.
 			clients.inMemory()
 				.withClient("my-trusted-client")
 					.authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")

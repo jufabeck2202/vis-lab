@@ -38,7 +38,7 @@ public class FibonacciService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String reset() {
 		FibonacciService.fibonacciNumber = 0;
-		FibonacciService.fibonacciNumber = 0;
+		FibonacciService.fibonacciIndexNumber = 0;
 		return "success";
 	}
 

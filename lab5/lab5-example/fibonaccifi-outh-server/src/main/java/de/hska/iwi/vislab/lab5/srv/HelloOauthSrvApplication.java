@@ -1,3 +1,4 @@
+
 package de.hska.iwi.vislab.lab5.srv;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,33 @@ public class HelloOauthSrvApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HelloOauthSrvApplication.class, args);
 	}
-	//service Darstellen
-	//einfacher statischer service
-	@RequestMapping(value = "/hello", method = RequestMethod.GET)
-	public String hello() {
-		return "Hello Oauth!";
+
+	private int fibonacciIndexNumber = 0;
+	private int fibonacciNumber = 0;
+
+	@RequestMapping(value = "/increment", method = RequestMethod.GET)
+	public String increment() {
+		this.fibonacciIndexNumber++;
+		this.fibonacciNumber = this.getFibonacciForNumber(this.fibonacciIndexNumber);
+		return Integer.toString(this.fibonacciNumber);
 	}
-	//HTTP Basic AUTH -> Fenster mit NAME und PW
+
+	@RequestMapping(value = "/reset", method = RequestMethod.DELETE)
+	public String reset() {
+		this.fibonacciNumber = 0;
+		this.fibonacciIndexNumber = 0;
+		return "success";
+	}
+
+	private int getFibonacciForNumber(int number) {
+        if (number == 0) {
+            return 0;
+        } else if (number == 1) {
+            return 1;
+        } else {
+            return  getFibonacciForNumber(number - 1) + getFibonacciForNumber(number - 2);
+        }
+	}
 	@Configuration
 	@EnableAuthorizationServer
 	protected static class OAuth2Config extends AuthorizationServerConfigurerAdapter {
@@ -50,26 +71,11 @@ public class HelloOauthSrvApplication {
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 			// @formatter:off
-			//DREI client, wir benutzen ersten.
 			clients.inMemory()
-				.withClient("my-trusted-client")
-					.authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
+				.withClient("my-client-with-secret")
+					.authorizedGrantTypes("client_credentials")
 					.authorities("ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
 					.scopes("read", "write", "trust")
-					.resourceIds("oauth2-resource")
-					.accessTokenValiditySeconds(600)
-			.and()
-				.withClient("my-client-with-registered-redirect")
-					.authorizedGrantTypes("authorization_code")
-					.authorities("ROLE_CLIENT")
-					.scopes("read", "trust")
-					.resourceIds("oauth2-resource")
-					.redirectUris("http://anywhere?key=value")
-			.and()
-				.withClient("my-client-with-secret")
-					.authorizedGrantTypes("client_credentials", "password")
-					.authorities("ROLE_CLIENT")
-					.scopes("read")
 					.resourceIds("oauth2-resource")
 					.secret("secret");
 			// @formatter:on

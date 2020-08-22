@@ -26,9 +26,9 @@ Accept: application/json
 ###
 
 GET http://localhost:8080/increment HTTP/1.1
-Authorization: Bearer e0246b6-ab69-44fb-9ba0-8ada625d56c5
+Authorization: Bearer 13813ab4-5367-4526-8d33-2f70b22499f5
 
 ###
 
-DELETE http://localhost:8080/increment HTTP/1.1
-Authorization: Bearer 78845751-aee3-4823-99fc-9ed1b3f103ad
+DELETE http://localhost:8080/reset HTTP/1.1
+Authorization: Bearer 13813ab4-5367-4526-8d33-2f70b22499f5

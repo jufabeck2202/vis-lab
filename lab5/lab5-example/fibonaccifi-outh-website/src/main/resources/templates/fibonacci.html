@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Ultra Secure Fibonacci App</title>
+</head>
+<body>
+
+    <h1>Ultra Secure Fibonacci App</h1>
+
+    <p th:text="${number} != null ? ${number} : 'No number yet.'"/>
+
+    <form>
+        <input type="submit" value="increment" formaction="/client/increment" formmethod="get"></input>
+    </form>
+
+    <form>
+        <input type="submit" value="reset" formaction="/client/reset" formmethod="post"></input>
+    </form>
+
+</body>
+</html>

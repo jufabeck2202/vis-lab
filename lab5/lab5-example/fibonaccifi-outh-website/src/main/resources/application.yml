@@ -1,6 +1,6 @@
 spring:
   application:
-    name: client
+    name: ultra secure fibonacci client
 server:
   port: 8081
   # use a different path for the client (otherwise cookies are shared)

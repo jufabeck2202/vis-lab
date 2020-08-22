@@ -37,7 +37,7 @@ public class HelloOauthSrvApplication {
 
 	@RequestMapping(value = "/reset", method = RequestMethod.DELETE)
 	public String reset() {
-		this.fibonacciNumber = 0;
+		this.fibonacciNumber = 1;
 		this.fibonacciIndexNumber = 0;
 		return "success";
 	}

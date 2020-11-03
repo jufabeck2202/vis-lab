@@ -31,7 +31,7 @@ public class FibonacciService {
 	public String increment() {
 		FibonacciService.fibonacciIndexNumber++;
 		FibonacciService.fibonacciNumber = this.getFibonacciForNumber(FibonacciService.fibonacciIndexNumber);
-		return "success";
+		return "http://localhost:8088/fibonacci/";
 	}
 
 	@DELETE
@@ -39,7 +39,7 @@ public class FibonacciService {
 	public String reset() {
 		FibonacciService.fibonacciNumber = 0;
 		FibonacciService.fibonacciIndexNumber = 0;
-		return "success";
+		return "http://localhost:8088/fibonacci/";
 	}
 
 	private int getFibonacciForNumber(int number) {

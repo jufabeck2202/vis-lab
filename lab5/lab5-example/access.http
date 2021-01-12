@@ -26,7 +26,7 @@ Accept: application/json
 ###
 
 GET http://localhost:8080/increment HTTP/1.1
-Authorization: Bearer 4ffc4328-9b04-491a-ad87-13cf1bb25e33
+Authorization: Bearer 43e511cc-a764-4893-a5fb-9a3c8e1236a3
 
 ###
 

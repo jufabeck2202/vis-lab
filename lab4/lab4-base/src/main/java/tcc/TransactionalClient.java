@@ -12,10 +12,7 @@ import javax.ws.rs.core.Response;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- * Simple non-transactional client. Can be used to populate the booking services
- * with some requests.
- */
+
 public class TransactionalClient {
 
     public boolean FAIL_HOTEL = false;
@@ -222,13 +219,10 @@ public class TransactionalClient {
         TransactionalClient client = new TransactionalClient("Julian", "Asperg", "Karlsruhe", "HSKAir", "Li137");
         client.start();
 
-        TransactionalClient client2 = new TransactionalClient("Julian", "Asperg", "Karlsruhe", "HSKAir", "Li137" );
+        TransactionalClient client2 = new TransactionalClient("Julian1", "Asperg1", "Karlsruhe1", "HSKAir1", "Li1371" );
         client2.FAIL_HOTEL = true;
         client2.start();
 
-        TransactionalClient client3 = new TransactionalClient("Julian", "Asperg", "Karlsruhe", "HSKAir", "Li137" );
-        client3.FAIL_FLIGHT_CONFORMATION = true;
-        client3.start();
 
     }
 }
